@@ -31,7 +31,7 @@ jobs:
       - aikido-circleci-orb/scan:
           git_url: << pipeline.project.git_url >>
           git_branch: << pipeline.git.branch >>
-          git_commit_sha: << pipeline.trigger_parameters.github_app.commit_sha >>
+          git_commit_sha: << pipeline.git.branch >>
 workflows:
   test-deploy:
     jobs:
