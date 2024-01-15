@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  This orb can be used to easily integrate Aikido Security into CircleCI's pipeline
+  This orb can be used to easily integrate Aikido Security scanning into CircleCI's pipeline
 display:
   home_url: "https://www.aikido.dev/"
   source_url: "https://github.com/AikidoSec/aikido-circleci-orb"
