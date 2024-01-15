@@ -28,7 +28,10 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - aikido-circleci-orb/greet
+      - aikido-circleci-orb/scan:
+          git_url: git_url_test
+          git_branch: git_branch_test
+          git_commit_sha: git_branch_sha
 workflows:
   test-deploy:
     jobs:

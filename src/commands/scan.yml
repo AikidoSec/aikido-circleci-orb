@@ -1,0 +1,22 @@
+description: >
+  This command starts an aikdio scan current for the current commit
+
+parameters:
+  git_url: 
+    type: string
+    description: Git url from the project for the current pipeline
+  git_branch: 
+    type: string
+    description: Git branch for the current pipeline
+  git_commit_sha:
+    type: string
+    description: Git commit sha for the current pipeline
+
+steps:
+  - run:
+      environment:
+        GIT_URL: <<parameters.git_url>>
+        GIT_BRANCH: <<parameters.git_branch>>
+        GIT_COMMIT_SHA: <<parameters.git_commit_sha>>
+      name: Starting scan for <<parameters.git_branch>>
+      command: <<include(scripts/startScan.sh)>>
