@@ -31,7 +31,7 @@ jobs:
       - aikido-circleci-orb/scan:
           git_url: git_url_test
           git_branch: git_branch_test
-          git_commit_sha: git_branch_sha
+          git_commit_sha: git_branch_test
 workflows:
   test-deploy:
     jobs:
