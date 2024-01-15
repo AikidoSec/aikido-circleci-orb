@@ -2,10 +2,10 @@ description: >
   This command starts an aikdio scan current for the current commit
 
 parameters:
-  git_url: 
+  git_url:
     type: string
     description: Git url from the project for the current pipeline
-  git_branch: 
+  git_branch:
     type: string
     description: Git branch for the current pipeline
   git_commit_sha:
