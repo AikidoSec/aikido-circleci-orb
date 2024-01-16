@@ -42,6 +42,18 @@ workflows:
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *filters
+      # publish development version of orb
+      - orb-tools/publish:
+          orb_name: aikido/aikido-circleci-orb
+          vcs_type: << pipeline.project.type >>
+          pub_type: dev
+          # Ensure this job requires all test jobs and the pack job.
+          requires:
+            - orb-tools/pack
+            - command-test
+          context: orb-publishing
+          filters: *filters
+      # publish production version of orb
       - orb-tools/publish:
           orb_name: aikido/aikido-circleci-orb
           vcs_type: << pipeline.project.type >>
