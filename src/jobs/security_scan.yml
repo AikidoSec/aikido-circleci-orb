@@ -20,7 +20,7 @@ docker:
 steps:
   - run:
       name: Install Aikido Security CI API client
-      command: npm install -g @aikidosec/ci-api-client
+      command: <<include(scripts/install.sh)>>
   - run:
       name: Scan using Aikdo's Security CI API client for this commit
       environment:
