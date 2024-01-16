@@ -24,7 +24,7 @@ fi
 
 echo "Getting base commit id"
 
-BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$SHA_HEAD_COMMIT_ID")
+BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$HEAD_COMMIT_SHA")
 
 echo "Starting Aikido CI scan..."
 
