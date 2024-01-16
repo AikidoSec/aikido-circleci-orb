@@ -24,4 +24,4 @@ fi
 
 echo -n "Starting Aikido CI scan..."
 
-aikido-api-client scan $REPO_ID $BASE_COMMIT_SHA $HEAD_COMMIT_SHA --apikey $AIKIDO_API_KEY
+aikido-api-client scan "$REPO_ID" "$BASE_COMMIT_SHA $HEAD_COMMIT_SHA" --apikey "$AIKIDO_API_KEY"
