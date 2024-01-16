@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -n "Verifying parameters..."
+echo "Verifying parameters..."
 
 if [ -z "$AIKIDO_API_KEY" ]; then
     echo "aikido_api_key not set. Please provide one and try again."
@@ -22,6 +22,6 @@ if [ -z "$HEAD_COMMIT_SHA" ]; then
     exit 1
 fi
 
-echo -n "Starting Aikido CI scan..."
+echo "Starting Aikido CI scan..."
 
-aikido-api-client scan "$REPO_ID" "$BASE_COMMIT_SHA $HEAD_COMMIT_SHA" --apikey "$AIKIDO_API_KEY"
+aikido-api-client scan "$REPO_ID" "$BASE_COMMIT_SHA" "$HEAD_COMMIT_SHA" --apikey "$AIKIDO_API_KEY"
