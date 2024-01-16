@@ -3,8 +3,9 @@ description: |
   The environment variables AIKIDO_API_KEY & AIKIDO_REPOSITORY_ID must be set for this scan to work
 
 parameters:
-  base_commit_sha:
+  base_branch:
     type: string
+    default: main
     description: Commit sha where the current branch is based on
   head_commit_sha:
     type: string
@@ -20,6 +21,6 @@ steps:
   - run:
       name: Scan using Aikdo's Security CI API client for this commit
       environment:
-        BASE_COMMIT_SHA: <<parameters.base_commit_sha>>
+        BASE_BRANCH: <<parameters.base_branch>>
         HEAD_COMMIT_SHA: <<parameters.head_commit_sha>>
       command: <<include(scripts/security_scan.sh)>>
