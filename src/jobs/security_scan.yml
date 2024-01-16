@@ -15,6 +15,7 @@ docker:
   - image: cimg/node:16.20.2
 
 steps:
+  - checkout
   - run:
       name: Install Aikido Security CI API client
       command: <<include(scripts/install.sh)>>
