@@ -43,6 +43,10 @@ fi
 
 AIKIDO_CMD="$AIKIDO_CMD --minimum-severity-level $MINIMUM_SEVERITY"
 
+echo "--- CIRCLE_PULL_REQUEST ---"
+echo "$CIRCLE_PULL_REQUEST"
+echo "--- CIRCLE_PULL_REQUEST ---"
+
 if [ -z "$CIRCLE_PULL_REQUEST" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
 fi
