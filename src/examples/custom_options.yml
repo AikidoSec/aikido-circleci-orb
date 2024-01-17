@@ -17,5 +17,5 @@ usage:
             fail_on_dependency_scan: false
             fail_on_sast_scan: true
             fail_on_iac_scan: true
-            minimum_severity: high
+            minimum_severity: HIGH
             context: aikido-ci-secrets

@@ -24,8 +24,8 @@ parameters:
     description: Flag used to make job fail when new issues are found during the infrastructure as code scan
   minimum_severity:
     type: enum
-    default: critical
-    enum: [low, medium, high, critical]
+    default: CRITICAL
+    enum: [LOW, MEDIUM, HIGH, CRITICAL]
     description: Severity used to make job fail when new issues are found with this severity or higher
 
 docker:
