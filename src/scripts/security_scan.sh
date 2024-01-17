@@ -29,18 +29,15 @@ AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE
 
 # Additional configuration options
 
-echo "$FAIL_ON_DEPENDENCY_SCAN"
-if [ "$FAIL_ON_DEPENDENCY_SCAN" = "false" ]; then
+if [[ "$FAIL_ON_DEPENDENCY_SCAN" == 1 ]]; then
     AIKIDO_CMD="$AIKIDO_CMD --no-fail-on-dependency-scan"
 fi
 
-echo "$FAIL_ON_SAST_SCAN"
-if [ "$FAIL_ON_SAST_SCAN" = "true" ]; then
+if [[ "$FAIL_ON_SAST_SCAN" == 1 ]]; then
     AIKIDO_CMD="$AIKIDO_CMD --fail-on-sast-scan"
 fi
 
-echo "$FAIL_ON_IAC_SCAN"
-if [ "$FAIL_ON_IAC_SCAN" = "true" ]; then
+if [[ "$FAIL_ON_IAC_SCAN" == 1 ]]; then
     AIKIDO_CMD="$AIKIDO_CMD --fail-on-iac-scan"
 fi
 
