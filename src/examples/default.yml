@@ -1,0 +1,13 @@
+description: >
+  Example for default usage.
+  We recommend saving AIKIDO_API_KEY in a context to re-use for multiple CircleCI projects and saving AIKIDO_REPOSITORY_ID as an environment variable for that project.
+usage:
+  version: 2.1
+  orbs:
+    aikido-circleci-orb: aikido/aikido-circleci-orb@1.0.0
+  workflows:
+    use-my-orb:
+      jobs:
+        - aikido-circleci-orb/security_scan:
+            head_commit_sha: << pipeline.git.revision >>
+            context: aikido-ci-secrets
