@@ -1,5 +1,16 @@
 #!/bin/bash
 
+if [ -z "${CIRCLE_PULL_REQUEST##*/}" ]; then
+    IS_PR=false
+else
+    IS_PR=true
+fi
+
+if [ "$IS_PR" = true ]; then
+    echo "Scanning only happens at Pull Requests"
+    exit 0
+fi
+
 echo -n "Installing Aikido CI API client..."
 
 npm install -g @aikidosec/ci-api-client
@@ -29,15 +40,15 @@ AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE
 
 # Additional configuration options
 
-if [ "$FAIL_ON_DEPENDENCY_SCAN" = false ]; then
+if [ "$FAIL_ON_DEPENDENCY_SCAN" = "false" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --no-fail-on-dependency-scan"
 fi
 
-if [ "$FAIL_ON_SAST_SCAN" = true ]; then
+if [ "$FAIL_ON_SAST_SCAN" = "true" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --fail-on-sast-scan"
 fi
 
-if [ "$FAIL_ON_IAC_SCAN" = true ]; then
+if [ "$FAIL_ON_IAC_SCAN" = "true" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --fail-on-iac-scan"
 fi
 
