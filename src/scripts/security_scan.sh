@@ -48,4 +48,6 @@ if [ -z "$CIRCLE_PULL_REQUEST" ]; then
 fi
 
 # start scan
+echo $AIKIDO_CMD
+
 $AIKIDO_CMD
