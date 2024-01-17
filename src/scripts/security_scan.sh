@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SUDO=""
-if [ "$UID" -ne 0 -a "$EUID" -ne 0 ]; then
+if [ "$UID" -ne 0 ] && [ "$EUID" -ne 0 ]; then
     SUDO="sudo"
 fi
 
