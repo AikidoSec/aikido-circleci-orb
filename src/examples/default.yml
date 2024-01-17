@@ -6,7 +6,7 @@ usage:
   orbs:
     aikido-circleci-orb: aikido/aikido-circleci-orb@1.0.0
   workflows:
-    use-my-orb:
+    aikido-scan:
       jobs:
         - aikido-circleci-orb/security_scan:
             head_commit_sha: << pipeline.git.revision >>
