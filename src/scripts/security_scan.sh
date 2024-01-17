@@ -29,7 +29,7 @@ AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE
 
 # Additional configuration options
 
-if [[ "$FAIL_ON_DEPENDENCY_SCAN" == 1 ]]; then
+if [[ "$FAIL_ON_DEPENDENCY_SCAN" == 0 ]]; then
     AIKIDO_CMD="$AIKIDO_CMD --no-fail-on-dependency-scan"
 fi
 
