@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo -n "Installing Aikido CI API client..."
+
+npm install -g @aikidosec/ci-api-client
+
 echo "Verifying parameters..."
 
 if [ -z "$AIKIDO_API_KEY" ]; then

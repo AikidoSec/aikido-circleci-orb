@@ -31,9 +31,6 @@ docker:
 steps:
   - checkout
   - run:
-      name: Install Aikido Security CI API client
-      command: <<include(scripts/install.sh)>>
-  - run:
       name: Scan using Aikdo's Security CI API client for this commit
       environment:
         BASE_BRANCH: <<parameters.base_branch>>
