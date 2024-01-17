@@ -24,6 +24,10 @@ parameters:
     default: CRITICAL
     enum: [LOW, MEDIUM, HIGH, CRITICAL]
     description: Severity used to make job fail when new issues are found with this severity or higher
+  debug:
+    type: boolean
+    default: false
+    description: Flag used to show more info about the job
 
 docker:
   - image: cimg/node:lts
@@ -38,4 +42,5 @@ steps:
         FAIL_ON_SAST_SCAN: <<parameters.fail_on_sast_scan>>
         FAIL_ON_IAC_SCAN: <<parameters.fail_on_iac_scan>>
         MINIMUM_SEVERITY: <<parameters.minimum_severity>>
+        DEBUG: <<parameters.debug>>
       command: <<include(scripts/security_scan.sh)>>

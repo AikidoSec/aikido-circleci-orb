@@ -5,11 +5,13 @@ if [ "$UID" -ne 0 ] && [ "$EUID" -ne 0 ]; then
     SUDO="sudo"
 fi
 
-echo -n "Installing Aikido CI API client..."
+echo "Installing Aikido CI API client..."
+echo
 
 $SUDO npm install -g @aikidosec/ci-api-client
 
 echo "Verifying parameters..."
+echo
 
 if [ -z "$AIKIDO_API_KEY" ]; then
     echo "AIKIDO_API_KEY not set. Please provide one as an environment variable and try again."
@@ -27,8 +29,14 @@ if [ -z "$BASE_BRANCH" ]; then
 fi
 
 echo "Finding base commit sha"
+echo
 
 BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$CIRCLE_SHA1")
+
+if [[ "$DEBUG" == 1 ]]; then
+    echo "comparing $BASE_COMMIT_ID vs $CIRCLE_SHA1"
+    echo
+fi
 
 AIKIDO_CMD="$SUDO aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE_SHA1 $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
 
@@ -52,7 +60,12 @@ if [ -n "$CIRCLE_PULL_REQUEST" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
 fi
 
+if [[ "$DEBUG" == 1 ]]; then
+    AIKIDO_CMD="$AIKIDO_CMD --debug"
+fi
+
 # start scan
 echo "$AIKIDO_CMD"
+echo
 
 $AIKIDO_CMD
