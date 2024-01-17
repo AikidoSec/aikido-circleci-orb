@@ -1,0 +1,13 @@
+description: >
+  Example for usage where the base branch is master.
+  We recommend saving AIKIDO_API_KEY in a context to re-use for multiple CircleCI projects and saving AIKIDO_REPOSITORY_ID as an environment variable for that project.
+usage:
+  version: 2.1
+  orbs:
+    aikido-circleci-orb: aikido/aikido-circleci-orb@1.0.0
+  workflows:
+    aikido-scan:
+      jobs:
+        - aikido-circleci-orb/security_scan:
+            base_branch: master
+            context: aikido-ci-secrets
