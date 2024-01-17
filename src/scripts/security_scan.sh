@@ -43,7 +43,7 @@ if [ -n "$CIRCLE_PULL_REQUEST" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
 fi
 
-$AIKIDO_CMD="npx $AIKIDO_CMD"
+AIKIDO_CMD="npx $AIKIDO_CMD"
 
 # start scan
 echo "$AIKIDO_CMD"
