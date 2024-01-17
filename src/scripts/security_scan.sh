@@ -17,7 +17,7 @@ if [ -z "$BASE_BRANCH" ]; then
     exit 1
 fi
 
-echo "Getting base commit id"
+echo "Finding base commit sha"
 
 BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$CIRCLE_SHA1")
 
@@ -39,6 +39,9 @@ fi
 
 AIKIDO_CMD="$AIKIDO_CMD --minimum-severity-level $MINIMUM_SEVERITY"
 
-echo "Starting Aikido CI scan..."
+if [ -z "$CIRCLE_PULL_REQUEST" ]; then
+    AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
+fi
 
+# start scan
 $AIKIDO_CMD
