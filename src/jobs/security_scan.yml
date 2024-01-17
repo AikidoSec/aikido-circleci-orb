@@ -26,7 +26,7 @@ parameters:
     description: Severity used to make job fail when new issues are found with this severity or higher
 
 docker:
-  - image: cimg/node:lts
+  - image: cimg/node:18.19.0
 
 steps:
   - checkout
