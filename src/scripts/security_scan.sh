@@ -1,16 +1,5 @@
 #!/bin/bash
 
-if [ -z "${CIRCLE_PULL_REQUEST##*/}" ]; then
-    IS_PR=false
-else
-    IS_PR=true
-fi
-
-if [ "$IS_PR" = true ]; then
-    echo "Scanning only happens at Pull Requests"
-    exit 0
-fi
-
 echo -n "Installing Aikido CI API client..."
 
 npm install -g @aikidosec/ci-api-client
