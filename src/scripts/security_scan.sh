@@ -1,5 +1,14 @@
 #!/bin/bash
 
+SUDO=""
+if [ "$UID" -ne 0 -a "$EUID" -ne 0 ]; then
+    SUDO="sudo"
+fi
+
+echo -n "Installing Aikido CI API client..."
+
+$SUDO npm install -g @aikidosec/ci-api-client
+
 echo "Verifying parameters..."
 
 if [ -z "$AIKIDO_API_KEY" ]; then
@@ -21,7 +30,7 @@ echo "Finding base commit sha"
 
 BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$CIRCLE_SHA1")
 
-AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE_SHA1 $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
+AIKIDO_CMD="$SUDO aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE_SHA1 $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
 
 # Additional configuration options
 
@@ -42,8 +51,6 @@ AIKIDO_CMD="$AIKIDO_CMD --minimum-severity-level $MINIMUM_SEVERITY"
 if [ -n "$CIRCLE_PULL_REQUEST" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
 fi
-
-AIKIDO_CMD="npx @aikidosec/ci-api-client $AIKIDO_CMD"
 
 # start scan
 echo "$AIKIDO_CMD"
