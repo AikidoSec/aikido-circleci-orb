@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo -n "Installing Aikido CI API client..."
-
-npm install -g @aikidosec/ci-api-client
-
 echo "Verifying parameters..."
 
 if [ -z "$AIKIDO_API_KEY" ]; then
@@ -46,6 +42,8 @@ AIKIDO_CMD="$AIKIDO_CMD --minimum-severity-level $MINIMUM_SEVERITY"
 if [ -n "$CIRCLE_PULL_REQUEST" ]; then
     AIKIDO_CMD="$AIKIDO_CMD --pull-request-url $CIRCLE_PULL_REQUEST"
 fi
+
+$AIKIDO_CMD="npx $AIKIDO_CMD"
 
 # start scan
 echo "$AIKIDO_CMD"
