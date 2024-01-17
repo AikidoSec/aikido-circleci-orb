@@ -13,7 +13,6 @@ usage:
     aikido-scan:
       jobs:
         - aikido-circleci-orb/security_scan:
-            head_commit_sha: << pipeline.git.revision >>
             fail_on_dependency_scan: false
             fail_on_sast_scan: true
             fail_on_iac_scan: true

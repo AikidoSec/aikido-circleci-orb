@@ -7,9 +7,6 @@ parameters:
     type: string
     default: main
     description: Commit sha where the current branch is based on
-  head_commit_sha:
-    type: string
-    description: Commit sha of the current branch's head
   fail_on_dependency_scan:
     type: boolean
     default: true
@@ -40,7 +37,6 @@ steps:
       name: Scan using Aikdo's Security CI API client for this commit
       environment:
         BASE_BRANCH: <<parameters.base_branch>>
-        HEAD_COMMIT_SHA: <<parameters.head_commit_sha>>
         FAIL_ON_DEPENDENCY_SCAN: <<parameters.fail_on_dependency_scan>>
         FAIL_ON_SAST_SCAN: <<parameters.fail_on_sast_scan>>
         FAIL_ON_IAC_SCAN: <<parameters.fail_on_iac_scan>>

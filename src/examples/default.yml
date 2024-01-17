@@ -9,5 +9,4 @@ usage:
     aikido-scan:
       jobs:
         - aikido-circleci-orb/security_scan:
-            head_commit_sha: << pipeline.git.revision >>
             context: aikido-ci-secrets

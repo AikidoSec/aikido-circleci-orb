@@ -17,16 +17,11 @@ if [ -z "$BASE_BRANCH" ]; then
     exit 1
 fi
 
-if [ -z "$HEAD_COMMIT_SHA" ]; then
-    echo "head_commit_sha not set. Please provide one and try again."
-    exit 1
-fi
-
 echo "Getting base commit id"
 
-BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$HEAD_COMMIT_SHA")
+BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$CIRCLE_SHA1")
 
-AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $HEAD_COMMIT_SHA $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
+AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $CIRCLE_SHA1 $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
 
 # Additional configuration options
 
