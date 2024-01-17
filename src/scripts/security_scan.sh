@@ -26,6 +26,24 @@ echo "Getting base commit id"
 
 BASE_COMMIT_ID=$(git merge-base origin/"$BASE_BRANCH" "$HEAD_COMMIT_SHA")
 
+AIKIDO_CMD="aikido-api-client scan $AIKIDO_REPOSITORY_ID $BASE_COMMIT_ID $HEAD_COMMIT_SHA $CIRCLE_BRANCH --apikey $AIKIDO_API_KEY"
+
+# Additional configuration options
+
+if [ "$FAIL_ON_DEPENDENCY_SCAN" = false ]; then
+    AIKIDO_CMD="$AIKIDO_CMD --no-fail-on-dependency-scan"
+fi
+
+if [ "$FAIL_ON_SAST_SCAN" = true ]; then
+    AIKIDO_CMD="$AIKIDO_CMD --fail-on-sast-scan"
+fi
+
+if [ "$FAIL_ON_IAC_SCAN" = true ]; then
+    AIKIDO_CMD="$AIKIDO_CMD --fail-on-iac-scan"
+fi
+
+AIKIDO_CMD="$AIKIDO_CMD --minimum-severity-level $MINIMUM_SEVERITY"
+
 echo "Starting Aikido CI scan..."
 
-aikido-api-client scan "$AIKIDO_REPOSITORY_ID" "$BASE_COMMIT_ID" "$HEAD_COMMIT_SHA" --apikey "$AIKIDO_API_KEY"
+$AIKIDO_CMD

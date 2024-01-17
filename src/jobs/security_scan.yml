@@ -10,6 +10,23 @@ parameters:
   head_commit_sha:
     type: string
     description: Commit sha of the current branch's head
+  fail_on_dependency_scan:
+    type: boolean
+    default: true
+    description: Flag used to make job fail when new issues are found during the dependency scan
+  fail_on_sast_scan:
+    type: boolean
+    default: false
+    description: Flag used to make job fail when new issues are found during the sast scan
+  fail_on_iac_scan:
+    type: boolean
+    default: false
+    description: Flag used to make job fail when new issues are found during the infrastructure as code scan
+  minimum_severity:
+    type: enum
+    default: critical
+    enum: [low, medium, high, critical]
+    description: Severity used to make job fail when new issues are found with this severity or higher
 
 docker:
   - image: cimg/node:16.20.2
@@ -24,4 +41,8 @@ steps:
       environment:
         BASE_BRANCH: <<parameters.base_branch>>
         HEAD_COMMIT_SHA: <<parameters.head_commit_sha>>
+        FAIL_ON_DEPENDENCY_SCAN: <<parameters.fail_on_dependency_scan>>
+        FAIL_ON_SAST_SCAN: <<parameters.fail_on_sast_scan>>
+        FAIL_ON_IAC_SCAN: <<parameters.fail_on_iac_scan>>
+        MINIMUM_SEVERITY: <<parameters.minimum_severity>>
       command: <<include(scripts/security_scan.sh)>>
